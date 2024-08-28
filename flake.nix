@@ -8,15 +8,14 @@
 
 
   outputs = { self, nixpkgs, flake-utils }: flake-utils.lib.eachDefaultSystem (system: let
+    system = "x86_64-linux";
     pkgs = import nixpkgs { system = system; };
 
     in {
      nixosConfigurations = {
-      mySystem = pkgs.nixosSystem{
-      system = system;
-        modules = [
-          # Add your NixOS configuration directly here
-        ];
+     my-hostname = nixpkgs.lib.nixosSystem {
+     system = "x86_64-linux";
+      modules = [ ./configuration.nix ];
         configuration ={
         networking = {
             # If You use NetworkManager
