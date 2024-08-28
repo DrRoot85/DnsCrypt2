@@ -1,0 +1,25 @@
+# Usage as a flake
+
+[![FlakeHub](https://img.shields.io/endpoint?url=https://flakehub.com/f/DrRoot85/Flakes/badge)](https://flakehub.com/flake/DrRoot85/Flakes)
+
+change acording to your use:
+         * networking = {
+        # if you use NetworkManager 
+              nameservers = [ "127.0.0.1" "::1" ];
+              networkmanager.enable = true;
+              networkmanager.dns = "none";
+         # if you use DHCPCD Uncomment This one and disable NetworkManager
+         #    dhcpcd.extraConfig = "nohook resolv.conf";
+
+Add Flakes to your `flake.nix`:
+
+```nix
+{
+  inputs.Flakes.url = "https://flakehub.com/f/DrRoot85/Flakes/*.tar.gz";
+
+  outputs = { self, Flakes }: {
+    # Use in your outputs
+  };
+}
+
+```
